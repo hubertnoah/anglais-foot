@@ -88,11 +88,12 @@ body.solo .back{display:block}body.solo .chap{display:none}body.solo .chap.show{
 </main>
 <footer>&copy; Hubert Noah &middot; Contact : hubertnoah@gmail.com &middot; Voix de synth&egrave;se</footer>
 <script>
+const FIXED='';
 function focusTrack(){
   document.body.classList.remove('solo');
   document.querySelectorAll('.on,.show').forEach(c=>c.classList.remove('on','show'));
   const q=new URLSearchParams(location.search).get('ch');
-  const id=q?(/^\d+$/.test(q)?'ch'+q:q):(location.hash||'').slice(1);
+  const id=FIXED||(q?(/^\d+$/.test(q)?'ch'+q:q):(location.hash||'').slice(1));
   const c=id&&document.getElementById(id); if(!c)return;
   if(c.classList.contains('chap')){c.classList.add('show');document.body.classList.add('solo');window.scrollTo(0,0);return;}
   c.classList.add('on');c.scrollIntoView({block:'center'});
